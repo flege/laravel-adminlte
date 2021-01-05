@@ -17,10 +17,16 @@ class Role
     public function handle($request, Closure $next)
     {
         if(Auth::check()){
-            if($request->user()->role=='admin'){
-                return $next($request);
-            }else{
+            $roles = array_slice(func_get_args(), 2);
+            if(count($roles)>0){
+                foreach($roles as $role){
+                    if($request->user()->role==$role){
+                        return $next($request);
+                    }
+                }
                 return abort(404);
+            }else{
+                return $next($request);
             }
         }else{
             return abort(404);
