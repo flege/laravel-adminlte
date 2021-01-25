@@ -40,10 +40,10 @@ class LoginController extends Controller
 
     public function redirectPath()
     {
-        return route('dashboard');
+        return route('dashboard'); // change redirect path after login
     }
 
     public function username(  ) {
-        return "username";
+        return "username"; // change if login using username instead of email
     }
 }
