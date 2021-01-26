@@ -1,9 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="apple-touch-icon" sizes="57x57" href="{{asset('img/favicon.png')}}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{asset('img/favicon.png')}}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{asset('img/favicon.png')}}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('img/favicon.png')}}}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{asset('img/favicon.png')}}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{asset('img/favicon.png')}}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{asset('img/favicon.png')}}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{asset('img/favicon.png')}}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{asset('img/favicon.png')}}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{asset('img/favicon.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('img/favicon.png')}}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{asset('img/favicon.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('img/favicon.png')}}">
+    <!-- Primary Meta Tags -->
+    <title>Judul Sistem | @yield('title')</title>
+
+    <meta name="title" content="Judul Sistem">
+    <meta name="description" content="Deskripsi sistem anda">
+    <meta name="keywords" content="keyword, sistem, anda, silahkan, diubah" />
+    <meta name="author" content="Abidurrahman Al-Faruq" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ route('index') }}">
+    <meta property="og:title" content="Judul Sistem">
+    <meta property="og:description" content="Deskripsi sistem anda">
+    <meta property="og:image" content="{{asset('img/favicon.png')}}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="website">
+    <meta property="twitter:url" content="{{ route('index') }}">
+    <meta property="twitter:title" content="Judul Sistem">
+    <meta property="twitter:description" content="Deskripsi sistem anda">
+    <meta property="twitter:image" content="{{asset('img/favicon.png')}}">
+
+    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Starter</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -78,7 +114,7 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <li class="nav-item">
-                        <a href="#" class="nav-link active">
+                        <a href="{{route('dashboard')}}" class="nav-link @yield('dashboard')">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard
@@ -86,23 +122,31 @@
                         </a>
                     </li>
                     @if(Auth::user()->role == 'admin')
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-box"></i>
+                    <li class="nav-header">MASTER DATA</li>
+                    <li class="nav-item @yield('user-menu')">
+                        <a href="#" class="nav-link @yield('user-header')">
+                            <i class="nav-icon fas fa-user"></i>
                             <p>
-                                Kategori
+                                User
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('user.index')}}" class="nav-link @yield('user')">
+                                    <i class="fas fa-bookmark nav-icon"></i>
+                                    <p>Index</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('user.create')}}" class="nav-link @yield('user-tambah')">
+                                    <i class="fas fa-users nav-icon"></i>
+                                    <p>Tambah</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     @endif
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-boxes"></i>
-                            <p>
-                                Produk
-                            </p>
-                        </a>
-                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -112,88 +156,7 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0">Starter Page</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Starter Page</li>
-                        </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header -->
-
-        <!-- Main content -->
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-
-                                <p class="card-text">
-                                    Some quick example text to build on the card title and make up the bulk of the card's
-                                    content.
-                                </p>
-
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-
-                        <div class="card card-primary card-outline">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-
-                                <p class="card-text">
-                                    Some quick example text to build on the card title and make up the bulk of the card's
-                                    content.
-                                </p>
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div><!-- /.card -->
-                    </div>
-                    <!-- /.col-md-6 -->
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="m-0">Featured</h5>
-                            </div>
-                            <div class="card-body">
-                                <h6 class="card-title">Special title treatment</h6>
-
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-
-                        <div class="card card-primary card-outline">
-                            <div class="card-header">
-                                <h5 class="m-0">Featured</h5>
-                            </div>
-                            <div class="card-body">
-                                <h6 class="card-title">Special title treatment</h6>
-
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.col-md-6 -->
-                </div>
-                <!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </div>
-        <!-- /.content -->
+        @yield('content')
     </div>
     <!-- /.content-wrapper -->
 

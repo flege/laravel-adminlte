@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -14,12 +15,8 @@ class DashboardController extends Controller
 
     public function index()
     {
-        if (Auth::user()->role == 'admin') {
-            $barang = array();
-        }else{
-            $barang = array();
-        }
+        $user = User::count();
 
-        return view('base', compact('barang'));
+        return view('dashboard', compact('user'));
     }
 }
