@@ -44,6 +44,6 @@ class LoginController extends Controller
     }
 
     public function username(  ) {
-        return "username"; // change if login using username instead of email
+        return "kodepegawai"; // change if login using username instead of email
     }
 }

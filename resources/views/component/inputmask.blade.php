@@ -1,4 +1,4 @@
-<!-- InputMask -->
+@push('js')
 <script src="{{asset('plugins/moment/moment.min.js')}}"></script>
 <script src="{{asset('plugins/inputmask/jquery.inputmask.min.js')}}"></script>
 <script>
@@ -11,5 +11,11 @@
             rightAlign: false,
             removeMaskOnSubmit: true
         });
+        $("[mask-number-clean]").inputmask('numeric', {
+            max: 9999999999999,
+            placeholder: "",
+            rightAlign: false,
+        });
     });
-</script>="stylesheet" href="{{asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+</script>
+@endpush

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('index');
+//Route::get('/', function () {
+//    return view('auth.login');
+//})->name('index');
+Route::get('/', [App\Http\Controllers\MainController::class, 'index'])->name('index');
 
 Auth::routes([
     'register' => false, // remove this class to activate register route
@@ -26,9 +28,10 @@ Auth::routes([
 
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('user/index', [App\Http\Controllers\UserController::class, 'index'])->name('user.index');
-Route::get('user/tambah', [App\Http\Controllers\UserController::class, 'create'])->name('user.create');
-Route::post('user/insert', [App\Http\Controllers\UserController::class, 'store'])->name('user.store');
-Route::get('user/edit/{id}', [App\Http\Controllers\UserController::class, 'edit'])->name('user.edit');
-Route::put('user/edit/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('user.edit');
-Route::delete('user/hapus', [App\Http\Controllers\UserController::class, 'destroy'])->name('user.destroy');
+Route::prefix('/user')->group(function () {
+    Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('user.index');
+    Route::post('insert', [App\Http\Controllers\UserController::class, 'store'])->name('user.store');
+    Route::get('edit/{id}', [App\Http\Controllers\UserController::class, 'edit'])->name('user.edit');
+    Route::put('update', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
+    Route::delete('delete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('user.destroy');
+});
